@@ -43,7 +43,12 @@ const only = role_name => (req, res, next) => {
 
     Pull the decoded token from the req object, to avoid verifying it again!
   */
- next()
+ const roleName = req.decodedToken.role_name
+ if(role_name === roleName){
+  next()
+ } else {
+  next({ status: 403, message: 'This is not for you' })
+ }
 }
 
 
@@ -59,7 +64,7 @@ const checkUsernameExists = async (req, res, next) => {
       const { username } = req.body
       const [user] = await User.findBy({ username })
       if(!user){
-        next({ status: 422, message: 'Invalid credentials' })
+        next({ status: 401, message: 'Invalid credentials' })
       } else {
         req.user = user
         next()
