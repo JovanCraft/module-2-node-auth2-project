@@ -79,4 +79,5 @@ Complete the `secrets/index.js` file.
 
 - Build a React application that implements components to register, login and view a list of users. Gotta keep sharpening your React skills.
 
-<!-- Added for initial commit! -->
+
+
